@@ -138,7 +138,7 @@ const checkDiagonal = () => {
   let count = 0;
   let corner = playGround[0][0];
   for (let i = 1; i < playGround.length - 1; i++) {
-    if (playGround[i][i] === corner) {
+    if (playGround[i][i] === corner && corner) {
       count++
     }
   }
