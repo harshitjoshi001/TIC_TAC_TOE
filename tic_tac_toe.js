@@ -7,9 +7,9 @@ let player2;
 let area = [];
 let pattern;
 let playGround;
-let repeat = false;
+let repeat = false
 
-const startGame = () => {
+const func = () => {
   prompt.get(['symbol1', 'symbol2', 'pattern'], (err, res) => {
     player1 = res.symbol1;
     player2 = res.symbol2;
@@ -80,13 +80,13 @@ const mainFunc = (coordinates) => {
         console.log(finalWin + ": winner winner")
         return
       }
-      repeat && (player = "ai");
+      { !repeat && (player = "ai") };
       repeat = false
+
       break;
     default: playGround = playGround;
   }
   console.log(`this is ${player} turn`)
-
   if (player === "ai") {
     mainFunc();
   } else {
@@ -99,8 +99,9 @@ const mainFunc = (coordinates) => {
 
 const checkWin = (user) => {
   const isRow = checkRow(user);
-  const isDiagonal = checkReverseDiagonal();
-  if (isRow || isDiagonal) {
+  const isDiagonal = checkDiagonal();
+  const isReverseDiagonal = checkReverseDiagonal();
+  if (isRow || isReverseDiagonal || isDiagonal) {
     let obj = {
       isWin: true,
       finalWin: user
@@ -133,6 +134,20 @@ const checkRow = () => {
   return false
 }
 
+const checkDiagonal = () => {
+  let count = 0;
+  let corner = playGround[0][0];
+  for (let i = 1; i < playGround.length - 1; i++) {
+    if (playGround[i][i] === corner) {
+      count++
+    }
+  }
+  if (count === playGround.length) {
+    return true
+  }
+  return false
+}
+
 const checkReverseDiagonal = () => {
   let rev_i = 0;
   let rev_j = playGround.length - 1;
@@ -154,6 +169,7 @@ const checkReverseDiagonal = () => {
   }
   return false
 }
+
 //--------------------- CHECK TIE CONDITION ------------------------------------------//
 
 const checkTie = () => {
@@ -172,7 +188,9 @@ const checkTie = () => {
   }
 }
 
-//-------------------------------AI CONTROLLER----------------------------------------//
+//------------------------------------------------------------------------------------//
+
+
 const aiController = () => {
   let randomCoordinate;
   do {
@@ -183,6 +201,6 @@ const aiController = () => {
 
 //------------------------------------------------------------------------------------//
 
-//-------START GAME-------------------------------------------------------------------//
-startGame();
-//-------START GAME-------------------------------------------------------------------//
+//-------main defination calling------------------------------------------------------//
+func();
+//-------main defination calling-----------------------------------------------------//
