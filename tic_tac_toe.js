@@ -44,6 +44,7 @@ const mainFunc = (coordinates) => {
       console.log(playGround);
       var isTie = checkTie();
       if (isTie) {
+        console.log("match tie")
         return
       }
       var { isWin, finalWin } = checkWin(player);
@@ -58,6 +59,7 @@ const mainFunc = (coordinates) => {
       console.log(playGround);
       var isTie = checkTie();
       if (isTie) {
+        console.log("match tie")
         return
       }
       var { isWin, finalWin } = checkWin(player);
@@ -73,6 +75,7 @@ const mainFunc = (coordinates) => {
       console.log(playGround);
       var isTie = checkTie();
       if (isTie) {
+        console.log("match tie")
         return
       }
       var { isWin, finalWin } = checkWin(player);
@@ -82,7 +85,6 @@ const mainFunc = (coordinates) => {
       }
       { !repeat && (player = "ai") };
       repeat = false
-
       break;
     default: playGround = playGround;
   }
@@ -176,7 +178,7 @@ const checkTie = () => {
   let count = 0
   for (let i = 0; i < playGround.length; i++) {
     for (let j = 0; j < playGround.length; j++) {
-      if (playGround[i][i] === null) {
+      if (playGround[i][j] === null) {
         count++;
       }
     }
